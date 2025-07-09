@@ -17,7 +17,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import re
 
-DB_PATH = 'transactions.db'
+DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'transactions.db')
 
 # Theme options for light and dark mode
 THEMES = {
@@ -35,7 +35,8 @@ def get_theme():
     return THEMES['Light']
 
 app = dash.Dash(__name__, external_stylesheets=[get_theme(), "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"], suppress_callback_exceptions=True)
-
+# Configure for production deployment
+app.config.suppress_callback_exceptions = True
 # Initialize DB if not exists
 def init_db():
     conn = sqlite3.connect(DB_PATH)
@@ -969,3 +970,4 @@ def handle_email_modal(open_clicks, send_clicks, close_clicks, is_open, smtp_ser
 
 if __name__ == '__main__':
     app.run(debug=True) 
+server = app.server
