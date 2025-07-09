@@ -4,3 +4,4 @@ plotly
 dash-bootstrap-components
 scikit-learn
 openpyxl
+gunicorn
