@@ -35,8 +35,10 @@ def get_theme():
     return THEMES['Light']
 
 app = dash.Dash(__name__, external_stylesheets=[get_theme(), "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"], suppress_callback_exceptions=True)
+
 # Configure for production deployment
 app.config.suppress_callback_exceptions = True
+
 # Initialize DB if not exists
 def init_db():
     conn = sqlite3.connect(DB_PATH)
@@ -969,7 +971,11 @@ def handle_email_modal(open_clicks, send_clicks, close_clicks, is_open, smtp_ser
     return is_open, ""
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)
+
+
+# Expose the server for Gunicorn
 server = app.server
+
 # Alternative: also expose as 'application' for some deployment platforms
 application = app.server
