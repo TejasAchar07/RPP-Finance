@@ -4,4 +4,3 @@ plotly
 dash-bootstrap-components
 scikit-learn
 openpyxl
-sqlite3 
