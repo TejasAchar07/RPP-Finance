@@ -971,3 +971,5 @@ def handle_email_modal(open_clicks, send_clicks, close_clicks, is_open, smtp_ser
 if __name__ == '__main__':
     app.run(debug=True) 
 server = app.server
+# Alternative: also expose as 'application' for some deployment platforms
+application = app.server
